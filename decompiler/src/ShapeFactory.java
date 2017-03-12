@@ -44,7 +44,7 @@ public class ShapeFactory {
                 break;
             }
             case 9: {
-                this.shape = new Arc2D.Double((double)(- this.width) / 2.0, (double)(- this.height) / 2.0, this.width, this.height, 30.0, 300.0, 2);
+                this.shape = new Arc2D.Double((double)(- this.width) / 2.0, (double)(- this.height) / 2.0, this.width, this.height, 30.0, 300.0, 2); 
                 break;
             }
             default: {
