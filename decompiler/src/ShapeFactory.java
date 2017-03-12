@@ -13,14 +13,38 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public class ShapeFactory {
-    public Shape shape;
-    public BasicStroke stroke = new BasicStroke(3.0f);
-    public Paint paint;
-    public int width = 25;
-    public int height = 25;
+    private Shape shape;
+    private BasicStroke stroke = new BasicStroke(3.0f);
+    private Paint paint;
+    private int width = 25;
+    private int height = 25;
+    
+    public Shape getShape(){
+    	return this.shape;
+    }
 
-    public ShapeFactory(int shape_type) {
-        switch (shape_type / 10) {
+    public BasicStroke getStroke(){
+    	return this.stroke;
+    }
+    
+    public Paint getPaint(){
+    	return this.paint;
+    }
+    
+    public int getWidth(){
+    	return this.width;
+    }
+    
+    public int getHeight(){
+    	return this.height;
+    }
+
+    /**
+     * Takes integer parameter which determines the shape and line type of the object.
+     * @param shape_type defines shape and size
+     */
+    public ShapeFactory(int shape_type, int shape_line) { 
+        switch (shape_type) {
             case 1: {
                 this.shape = ShapeFactory.createStar(3, new Point(0, 0), (double)this.width / 2.0, (double)this.width / 2.0);
                 break;
@@ -51,7 +75,7 @@ public class ShapeFactory {
                 throw new Error("type is nusupported");
             }
         }
-        switch (shape_type % 10) {
+        switch (shape_line) {
             case 1: {
                 this.stroke = new BasicStroke(3.0f);
                 break;
@@ -76,7 +100,15 @@ public class ShapeFactory {
             }
         }
     }
-
+    
+    /**
+     * Defines the shape of the Star figure based on the parameters below
+     * @param arms
+     * @param center
+     * @param rOuter
+     * @param rInner
+     * @return object of type Shape 
+     */
     private static Shape createStar(int arms, Point center, double rOuter, double rInner) {
         double angle = 3.141592653589793 / (double)arms;
         GeneralPath path = new GeneralPath();
